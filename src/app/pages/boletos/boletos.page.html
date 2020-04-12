@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Boletos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of (results | async)">
+ 
+      <ion-label text-wrap>
+        <h3><b>Vencimento: {{ item.vencimento }}</b></h3>
+        <h3><p> Valor: {{ item.valor  | currency:'BRL':true:'1.2-2'}}</p> </h3>
+        <p *ngIf=" item.status == 'NP'" >  <font color="orange"> <b>Não Pago</b>  </font></p>
+        <p *ngIf=" item.status == 'PG'" > <font color="green"><b>Pago</b></font> </p>  
+        <p *ngIf=" item.status == 'CA'" > <font color="red"><b>Cancelado</b></font>  </p>   
+        <p *ngIf=" item.status == 'VE'" >  <font color="red"> <b>Vencido</b>  </font></p>       
+      </ion-label>
+    </ion-item>
+ 
+  </ion-list>
+</ion-content>
